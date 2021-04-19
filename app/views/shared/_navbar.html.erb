@@ -1,3 +1,15 @@
-<nav class="bg-blue-400 text-xl px-2 py-4">
-    <i class="fab fa-trello">Tello</i>
+<nav class="flex justify-between items-center bg-blue-400 text-blue-100 text-xl px-2 py-4">
+    <a href="/">
+        <i class="fab fa-trello"></i> Tello
+    </a>
+
+    <div>
+        <% if user_signed_in? %>
+            <span class="mr-2"><%= current_user.email %></span>
+            <%= link_to 'ログアウト', destroy_user_session_path, method: 'delete', class: 'user-button' %>
+        <% else %>
+            <%= link_to '新規登録', new_user_registration_path, class: 'user-button' %>
+            <%= link_to 'ログイン', new_user_session_path, class: 'user-button' %>
+        <% end %>
+    </div>
 </nav>
