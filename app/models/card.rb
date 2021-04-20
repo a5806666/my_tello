@@ -3,5 +3,5 @@ class Card < ApplicationRecord
 
   belongs_to :list
 
-  vaildates :name, presence :true
+  validates :name, presence: true
 end
