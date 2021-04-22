@@ -1,7 +1,12 @@
 Rails.application.routes.draw do
   devise_for :users
 
-  resources :cards
+  resources :cards do
+    member do
+      put :move # cards/2/move
+    end
+  end
+
   resources :lists do 
     member do
       put :move # lists/2/move
