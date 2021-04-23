@@ -73,7 +73,6 @@
                     let data = new FormData();
                     data.append("card[list_id]", this.list.id);
                     data.append("card[position]", evt.newIndex + 1);
-
                     Rails.ajax({
                         // cards/2/move
                         url: `cards/${card_id}/move`,
@@ -99,7 +98,7 @@
     }
 
     .list {
-        @apply bg-gray-300 mx-2 w-64 rounded px-3 py-1;
+        @apply bg-gray-300 mx-2 w-64 rounded px-3 py-3 flex-none h-full;
 
         .header {
             @apply font-bold;
@@ -120,7 +119,7 @@
                 }
             }
             .button {
-                @apply mt-1 mb-1 px-3 py-1 font-semibold text-sm rounded;
+                @apply mt-1 px-3 py-1 font-semibold text-sm rounded;
 
                 &:focus {
                     @apply outline-none;
