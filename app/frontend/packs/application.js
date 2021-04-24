@@ -15,54 +15,71 @@ ActiveStorage.start()
 import Vue from 'vue/dist/vue.esm';
 import List from 'components/list';
 import draggable from 'vuedraggable';
+import store from 'stores/list';
+import { mapGetters, mapActions } from 'vuex';
 
 document.addEventListener("turbolinks:load", function(event) {
     let el = document.querySelector('#board');
 
     if (el) {
         new Vue({
-            el: el, // #board 
-            data: {
+            el: el, // #board
+            store: store,
+            computed: {
+                // ...mapGetters(["lists"])
+                lists: {
+                    get() {
+                        return this.$store.state.lists;
+                    },
+                    set (value) {
+                        this.$store.commit('UPDATE_LISTS', value);
+                    }
+                }
+            }, 
+            // data: {
                 // lists: JSON.parse(el.dataset.lists)
-                lists: []
-            },
+                // lists: []
+            // },
             components: { List: List, draggable: draggable },
             methods: {
-                listMoved(event){
-                    console.log(event);
+                ...mapActions(["loadList", "moveList"]),
+                // listMoved(event){
 
-                    let data = new FormData();
-                    data.append("list[position]", event.moved.newIndex + 1);
+                    // console.log(event);
+
+                    // let data = new FormData();
+                    // data.append("list[position]", event.moved.newIndex + 1);
                     // console.log(this.lists[event.moved.newIndex].id);
 
-                    Rails.ajax({
-                        // /lists/2/move
-                        url: `/lists/${this.lists[event.moved.newIndex].id}/move`,
-                        type: 'PUT',
-                        data: data,
-                        dataType: 'JSON',
-                        success: function(resp){
-                            console.log(resp);
-                        },
-                        error: err => {
-                            console.log(err);
-                        }
-                    });
-                }
+                    // Rails.ajax({
+                    //     /lists/2/move
+                    //     url: `/lists/${this.lists[event.moved.newIndex].id}/move`,
+                    //     type: 'PUT',
+                    //     data: data,
+                    //     dataType: 'JSON',
+                    //     success: function(resp){
+                    //         console.log(resp);
+                    //     },
+                    //     error: err => {
+                    //         console.log(err);
+                    //     }
+                    // });
+                // }
             },
             beforeMount() {
-                Rails.ajax({
-                    url: 'lists.json',
-                    type: 'GET',
-                    dataType: 'json',
-                    success: (resp) => {
-                        // console.log(resp);
-                        this.lists = resp;
-                    },
-                    error: (err) => {
-                        console.log(err);
-                    }
-                });
+                this.loadList();
+                // Rails.ajax({
+                //     url: 'lists.json',
+                //     type: 'GET',
+                //     dataType: 'json',
+                //     success: (resp) => {
+                //         // console.log(resp);
+                //         this.lists = resp;
+                //     },
+                //     error: (err) => {
+                //         console.log(err);
+                //     }
+                // });
             }
         });
     }
