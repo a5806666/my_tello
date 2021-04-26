@@ -17,6 +17,7 @@ import List from 'components/list';
 import draggable from 'vuedraggable';
 import store from 'stores/list';
 import { mapGetters, mapActions } from 'vuex';
+import Newlist from 'components/newlist';
 
 document.addEventListener("turbolinks:load", function(event) {
     let el = document.querySelector('#board');
@@ -40,7 +41,7 @@ document.addEventListener("turbolinks:load", function(event) {
                 // lists: JSON.parse(el.dataset.lists)
                 // lists: []
             // },
-            components: { List: List, draggable: draggable },
+            components: { List: List, draggable: draggable, Newlist: Newlist },
             methods: {
                 ...mapActions(["loadList", "moveList"]),
                 // listMoved(event){
