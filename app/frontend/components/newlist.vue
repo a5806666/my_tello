@@ -3,7 +3,7 @@
         <button v-if="!creatingList" class="new_button" @click="newlist">
             <i class="fas fa-plus"></i> リストを追加
         </button>
-        <input v-if="creatingList" type="text" class="list_name" placeholder="リストのタイトル">
+        <input ref="foucs" v-model="list_name" v-if="creatingList" type="text" class="list_name" placeholder="リストのタイトル">
         <button v-if="creatingList" class="button create_button" @click="createList">リストを追加</button>
         <button v-if="creatingList" class="button cancel_button" @click="creatingList = false">取り消す</button>
     </div>
@@ -14,18 +14,23 @@
         name: 'Newlist',
         data: function(){
             return {
-                creatingList: false
+                creatingList: false,
+                list_name: ''
             }
         },
         methods: {
             newlist(event){
                 event.preventDefault();
                 this.creatingList = true;
+                this.$nextTick(() => {
+                    this.$refs.foucs.focus();
+                });
             },
             createList(event){
                 event.preventDefault();
+                this.$store.dispatch("createList", this.list_name);
                 this.creatingList = false;
-                console.log('create');
+                this.list_name = "";
             }
         }
     }
