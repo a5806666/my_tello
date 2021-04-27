@@ -39,6 +39,7 @@ class ListsController < ApplicationController
   end
 
   def destroy
+    ActionCable.server.broadcast "board", { commit: 'REMOVE_LIST', payload: render_to_string(:show, format: :json)}
     @list.destroy
     respond_to do |format|
       format.html { redirect_to lists_url, notice: "List was successfully destroyed." }

@@ -27,7 +27,7 @@ export default new Vuex.Store({
             state.lists.push(list);
         },
         REMOVE_LIST(state, list_id){
-            let list_index = state.lists.findIndex(list => list.id == list_id); 
+            let list_index = state.lists.findIndex(list => list.id == list_id.id); 
             state.lists.splice(list_index, 1);
         }
     },
@@ -37,9 +37,9 @@ export default new Vuex.Store({
                 url: `/lists/${list_id}`,
                 type: 'DELETE',
                 dataType: 'json',
-                success: (resp) => {
-                    commit('REMOVE_LIST', list_id);
-                },
+                // success: (resp) => {
+                    // commit('REMOVE_LIST', list_id);
+                // },
                 error: (err) => {
                     console.log(err);
                 }
@@ -54,9 +54,9 @@ export default new Vuex.Store({
                 type: 'POST', 
                 data: data,
                 dataType: 'json',
-                success: (resp) => {
-                    commit('ADD_LIST', resp);
-                },
+                // success: (resp) => {
+                    // commit('ADD_LIST', resp);
+                // },
                 error: (err) => {
                     console.log(err);
                 }
@@ -71,10 +71,10 @@ export default new Vuex.Store({
                 type: 'PUT',
                 data: data,
                 dataType: 'json',
-                success: (resp) => {
-                    commit('REPLACE_CARD', resp);
+                // success: (resp) => {
+                    // commit('REPLACE_CARD', resp);
                     // console.log(resp);
-                },
+                // },
                 error: (err) => {
                     console.log(err);
                 }
