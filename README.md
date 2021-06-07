@@ -1,5 +1,5 @@
 # my tell
-###### tags: `github` `README`
+###### tags: `github` 
 ---
 リンク: [ホームページ](https://whispering-citadel-92558.herokuapp.com/)
 tags: Templates, Talk
