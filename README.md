@@ -1,10 +1,15 @@
+# my tell
+###### tags: `github` `README`
 ---
-title: Talk slides template
+リンク: [ホームページ](https://whispering-citadel-92558.herokuapp.com/)
 tags: Templates, Talk
 description: View the slide with "Slide Mode".
 ---
 
 # Unleash the power!
+
+[![hackmd-github-sync-badge](https://hackmd.io/LG_TWsA4TYaaeUcSm0s8dQ/badge)](https://hackmd.io/LG_TWsA4TYaaeUcSm0s8dQ)
+
 
 <!-- Put the link to this slide here so people can follow -->
 slide: https://hackmd.io/p/template-Talk-slide
