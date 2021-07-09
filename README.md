@@ -1,167 +1,54 @@
-# my tell
+# [my tell](https://guarded-garden-97622.herokuapp.com/)
 ###### tags: `github` 
----
-リンク: [ホームページ](https://whispering-citadel-92558.herokuapp.com/)
-tags: Templates, Talk
-description: View the slide with "Slide Mode".
----
+<font size="4">**アプリケーション概要：**</font>
 
-# Unleash the power!
-
-[![hackmd-github-sync-badge](https://hackmd.io/LG_TWsA4TYaaeUcSm0s8dQ/badge)](https://hackmd.io/LG_TWsA4TYaaeUcSm0s8dQ)
-
-
-<!-- Put the link to this slide here so people can follow -->
-slide: https://hackmd.io/p/template-Talk-slide
-
----
-
-We have a collaborative session
-
-please prepare laptop or smartphone to join!
-
----
-
-## Who am I?
-
-- Front-end developer
-- VSCode :heart: 
-- I use tabs. :cat: 
-
----
-
-### 70% of our users are developers. Developers :heart: GitHub.
-
----
-
-{%youtube E8Nj7RwXf0s %}
-
----
-
-### Usage flow
-
----
-
-
-```graphviz
-digraph {
-  compound=true
-  rankdir=RL
-
-  graph [ fontname="Source Sans Pro", fontsize=20 ];
-  node [ fontname="Source Sans Pro", fontsize=18];
-  edge [ fontname="Source Sans Pro", fontsize=12 ];
-
-
-  subgraph core {
-    c [label="Hackmd-it \ncore"] [shape=box]
-  }
-  
-  c -> sync [ltail=session lhead=session]
-
-  subgraph cluster1 {
-     concentrate=true
-    a [label="Text source\nGithub, Gitlab, ..."] [shape=box]
-    b [label="HackMD Editor"] [shape=box]
-    sync [label="sync" shape=plaintext ]
-    b -> sync  [dir="both"]
-    sync -> a [dir="both"]
-    label="An edit session"
-  }
-}
+```markdown
 ```
 
----
-
-### Architecture of extension
-
----
-
-![](https://i.imgur.com/ij69tPh.png)
-
----
-
-## Content script
-
-- Bind with each page
-- Manipulate DOM
-- Add event listeners
-- Isolated JavaScript environment
-  - It doesn't break things
-
----
-
-# :fork_and_knife: 
-
----
-
-<style>
-code.blue {
-  color: #337AB7 !important;
-}
-code.orange {
-  color: #F7A004 !important;
-}
-</style>
-
-- <code class="orange">onMessage('event')</code>: Register event listener
-- <code class="blue">sendMessage('event')</code>: Trigger event
-
----
-
-# :bulb: 
-
----
-
-- Dead simple API
-- Only cares about application logic
-
----
-
-```typescript
-import * as Channeru from 'channeru'
-
-// setup channel in different page environment, once
-const channel = Channeru.create()
+<font size="4">**作成の目的：**</font>
+```markdown
 ```
-
 ---
 
-```typescript
-// in background script
-const fakeLogin = async () => true
+## テスト用アカウント　＆　関連リンク
 
-channel.answer('isLogin', async () => {
-  return await fakeLogin()
-})
+| テスト用    | アカウント          |
+| ------------ | ------------------- |
+| メール       | test@gmail.com   |
+| パスワード   | 11111111            |
+
+| タイトル　　　　　　　　　　　　| リンク　　　　　　　　　　　|
+| --------------------------|:------------------------ |
+| 私のブログ（中国語）　　　　　　|　[:link:][blog]　　　　　　|
+| 受講したオンライン講座（中国語）|　[:link:][オンライン講座]　　|
+
+[blog]: http://translate.google.com/translate?hl=en&sl=zh-CN&tl=ja&u=https%3A%2F%2Fhackmd.io%2F%407beedhBrQk2FjyAtSY5wxQ&sandbox=1
+[オンライン講座]: http://translate.google.com/translate?hl=en&sl=zh-CN&tl=ja&u=https%3A%2F%2Fcampus.5xruby.tw%2Fp%2Fcoding
+
+---
+## 使い方の紹介　／　URL：<font size="4">**https://guarded-garden-97622.herokuapp.com/**</font>
+### トップ画面
+```markdown
+ToDoリストが一覧で表示されています。 
+リストを追加ボタンをクリックすると、Todoリストが作成できます。
 ```
+![](https://i.imgur.com/gFIpbm5.gif)
 
-<br>
-
-```typescript
-// in inject script
-const isLogin = await channel.callBackground('isLogin')
-console.log(isLogin) //-> true
-```
 
 ---
 
-# :100: :muscle: :tada:
+## 使用技術
+* Ruby 2.6.7
+* ruby on rails 6.1.3
+* ubuntu 20.04
+* postgreSQL 13.2
+* vue.js
+* TailwindCSS
+* GitHub
+* Heroku
 
 ---
-
-### Wrap up
-
-- Cross envornment commnication
-- A small library to solve messaging pain
-- TypeScript Rocks :tada: 
-
----
-
-### Thank you! :sheep: 
-
-You can find me on
-
-- GitHub
-- Twitter
-- or email me
+## 機能一覧、使用したgemなど
+* ユーザー登録機能、ログイン機能（[devise](https://hackmd.io/nYCmlVBYTgGy4vYKYyr-Gw)）
+* TodoリストのCRUD
+    
